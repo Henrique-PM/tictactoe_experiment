@@ -28,6 +28,8 @@ Renderização do tabuleiro
 Verificação de vitória
 Essas funções são chamadas a cada jogada para atualizar o estado e verificar o resultado.
 
+Arquivos: game.js, script.js, style.css e game.test.js.
+
 ## T — Tests
 Foram feitos testes manuais com partidas completas e testes automatizados ajustados para validar o uso dos emojis.
 

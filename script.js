@@ -6,8 +6,19 @@
 const cells    = document.querySelectorAll('.cell');
 const status   = document.getElementById('status');
 const restartBtn     = document.getElementById('restart');
+const catScoreEl = document.getElementById('score-cat');
+const dogScoreEl = document.getElementById('score-dog');
 
 let state = createInitialState();
+const score = {
+  [PLAYER_CAT]: 0,
+  [PLAYER_DOG]: 0,
+};
+
+function renderScore() {
+  if (catScoreEl) catScoreEl.textContent = String(score[PLAYER_CAT]);
+  if (dogScoreEl) dogScoreEl.textContent = String(score[PLAYER_DOG]);
+}
 
 function playerCssClass(player) {
   if (player === PLAYER_CAT) return 'cat';
@@ -45,6 +56,8 @@ function handleClick(e) {
   if (result) {
     state.gameOver = true;
     if (result.winner) {
+      score[result.winner] += 1;
+      renderScore();
       result.combo.forEach(i => cells[i].classList.add('winning'));
       setStatus(`${result.winner} venceu!`, 'win');
     } else {
@@ -70,4 +83,5 @@ restartBtn.addEventListener('click', restartGame);
 
 // Initial render
 render();
+renderScore();
 setStatus(`Vez do ${state.current}`);
